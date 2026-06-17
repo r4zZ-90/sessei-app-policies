@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Sessei — the philosophy of active biological governance. Quiet armor through consistency.">
+<title>Sessei — Philosophy</title>
+<style>
+:root {
+  --canvas:   #F6F4EE;
+  --ink900:   #0A101A;
+  --ink800:   #131A26;
+  --ink700:   #1F2735;
+  --ink600:   #2F3845;
+  --ink500:   #4B5664;
+  --ink400:   #6E7B8C;
+  --ink300:   #A8B3C0;
+  --ink200:   #CFD7DF;
+  --sage100:  #DCE9DD;
+  --sage300:  #9EBAA3;
+  --sage400:  #7DA28F;
+  --sage500:  #5F8474;
+  --sage600:  #4A6E5F;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", "Helvetica Neue", sans-serif;
+  background: var(--ink900);
+  color: var(--canvas);
+  line-height: 1.7;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+/* Ambient gradient layer — same vocabulary as the homepage */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(circle at 20% 0%,   rgba(95, 132, 116, 0.22), transparent 40%),
+    radial-gradient(circle at 85% 30%,  rgba(78, 108, 144, 0.16), transparent 45%),
+    radial-gradient(circle at 50% 100%, rgba(95, 132, 116, 0.12), transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Big background logo — centered, faded, fixed so it stays behind on scroll */
+.bg-logo {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+  z-index: 0;
+}
+.bg-logo img {
+  width: min(82vmin, 760px);
+  height: auto;
+  opacity: 0.05;
+  filter: blur(1px) saturate(0.7);
+  /* Soft radial mask so edges don't compete with text */
+  -webkit-mask-image: radial-gradient(circle, #000 55%, transparent 80%);
+          mask-image: radial-gradient(circle, #000 55%, transparent 80%);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .bg-logo img {
+    animation: drift 28s ease-in-out infinite alternate;
+  }
+}
+@keyframes drift {
+  from { transform: translateY(-6px) scale(1.00); }
+  to   { transform: translateY( 6px) scale(1.02); }
+}
+
+/* Subtle vignette overlay to lift text readability on top of the logo */
+.vignette {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    radial-gradient(ellipse at center, rgba(10,16,26,0) 30%, rgba(10,16,26,0.55) 85%),
+    linear-gradient(180deg, rgba(10,16,26,0.35), rgba(10,16,26,0) 18%, rgba(10,16,26,0) 82%, rgba(10,16,26,0.35));
+}
+
+main {
+  position: relative;
+  z-index: 1;
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 56px 28px 96px;
+}
+
+/* Top nav — minimal */
+.topnav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 48px;
+  font-size: 14px;
+}
+.topnav .home {
+  color: var(--ink300);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: color 0.15s ease;
+}
+.topnav .home:hover { color: var(--sage300); }
+.topnav .home svg {
+  width: 14px; height: 14px;
+  stroke: currentColor; fill: none; stroke-width: 2;
+  stroke-linecap: round; stroke-linejoin: round;
+}
+.topnav .brand {
+  color: var(--ink400);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-size: 12px;
+}
+
+/* Hero — quiet, restrained */
+.hero {
+  text-align: center;
+  padding: 16px 0 56px;
+}
+.hero .eyebrow {
+  font-size: 12px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--sage400);
+  margin: 0 0 18px;
+  font-weight: 600;
+}
+.hero h1 {
+  font-size: clamp(40px, 7vw, 64px);
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  margin: 0 0 14px;
+  background: linear-gradient(180deg, var(--canvas), var(--ink200));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.hero .subline {
+  color: var(--sage300);
+  font-size: clamp(15px, 1.8vw, 17px);
+  letter-spacing: 0.02em;
+  margin: 0;
+  font-weight: 500;
+}
+.hero::after {
+  content: "";
+  display: block;
+  width: 36px;
+  height: 2px;
+  background: var(--sage400);
+  margin: 36px auto 0;
+  opacity: 0.6;
+}
+
+/* Canonical statement — the centerpiece */
+.statement {
+  margin: 0 0 64px;
+  font-size: clamp(18px, 2.05vw, 21px);
+  line-height: 1.65;
+  color: var(--canvas);
+  text-align: left;
+  font-weight: 400;
+  /* Pane to lift it cleanly above the background logo */
+  background: rgba(10, 16, 26, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 18px;
+  padding: clamp(28px, 4vw, 44px);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+.statement p { margin: 0; }
+.statement .lede {
+  font-weight: 600;
+  color: var(--sage100);
+  letter-spacing: 0.005em;
+}
+.statement em {
+  color: var(--sage300);
+  font-style: italic;
+}
+
+/* Themes section */
+.themes {
+  margin: 0 0 64px;
+}
+.themes h2 {
+  font-size: 12px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--sage400);
+  margin: 0 0 24px;
+  font-weight: 600;
+  text-align: center;
+}
+.theme-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+}
+.theme {
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 14px;
+  padding: 22px 22px 20px;
+}
+.theme h3 {
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--sage300);
+  margin: 0 0 12px;
+  font-weight: 600;
+}
+.theme .keep, .theme .avoid {
+  display: block;
+  font-size: 14px;
+  line-height: 1.5;
+}
+.theme .keep { color: var(--canvas); margin-bottom: 6px; }
+.theme .avoid { color: var(--ink400); }
+.theme .avoid::before {
+  content: "not ";
+  color: var(--ink500);
+  font-style: italic;
+}
+
+/* Etymology — small print, parenthetical weight */
+.etymology {
+  margin: 0 0 64px;
+  padding: 28px 0 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  color: var(--ink300);
+  font-size: 15px;
+  text-align: center;
+}
+.etymology .kanji {
+  font-size: 28px;
+  letter-spacing: 0.18em;
+  color: var(--sage300);
+  margin: 0 0 12px;
+  font-weight: 500;
+}
+.etymology p {
+  margin: 0 auto;
+  max-width: 540px;
+  line-height: 1.6;
+}
+
+/* Closing — quiet armor line */
+.closing {
+  text-align: center;
+  padding: 24px 0 0;
+}
+.closing .quote {
+  font-size: clamp(17px, 2vw, 19px);
+  font-style: italic;
+  color: var(--canvas);
+  margin: 0 0 14px;
+  line-height: 1.5;
+}
+.closing .by {
+  color: var(--ink400);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+/* Footer */
+footer {
+  position: relative;
+  z-index: 1;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  padding: 36px 28px 48px;
+  text-align: center;
+  font-size: 13px;
+  color: var(--ink400);
+  background: rgba(0,0,0,0.2);
+}
+footer .links { margin-bottom: 12px; }
+footer a {
+  color: var(--sage300);
+  text-decoration: none;
+  margin: 0 12px;
+  transition: color 0.15s ease;
+}
+footer a:hover { color: var(--sage100); }
+
+@media (max-width: 720px) {
+  main { padding: 32px 20px 64px; }
+  .topnav { margin-bottom: 28px; }
+  .hero { padding: 8px 0 36px; }
+  .hero::after { margin-top: 28px; }
+  .statement { margin-bottom: 48px; }
+  .bg-logo img { opacity: 0.04; }
+}
+</style>
+</head>
+<body>
+
+<div class="bg-logo" aria-hidden="true">
+  <img src="icon.png" alt="">
+</div>
+<div class="vignette" aria-hidden="true"></div>
+
+<main>
+  <nav class="topnav">
+    <a class="home" href="index.html">
+      <svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>
+      Back
+    </a>
+    <span class="brand">Sessei</span>
+  </nav>
+
+  <section class="hero">
+    <p class="eyebrow">Brand Philosophy</p>
+    <h1>Quiet armor<br>through consistency.</h1>
+    <p class="subline">Sessei &mdash; 節制 &middot; 摂生</p>
+  </section>
+
+  <section class="statement">
+    <p>
+      <span class="lede">Sessei is the philosophy of active biological governance</span> &mdash; treating health not as a passive state, but as a lifelong discipline of structured self&#8209;restraint. It demands the intentional regulation of fasting, hydration, and nutritional intervals to keep the physical vessel in perfect metabolic alignment. <em>True optimization does not come from erratic bio&#8209;hacking, but from the rhythmic, conscious execution of foundational habits.</em> By mastering the daily cycles of intake and restriction, you reclaim control over your biological trajectory. Ultimately, Sessei is the quiet armor built through consistency, transforming raw discipline into sustained vitality.
+    </p>
+  </section>
+
+  <section class="themes">
+    <h2>The vocabulary</h2>
+    <div class="theme-grid">
+      <div class="theme">
+        <h3>Self&#8209;governance</h3>
+        <span class="keep">Discipline. Mastery. Restraint.</span>
+        <span class="avoid">hacks, life&#8209;hacks, biohacks.</span>
+      </div>
+      <div class="theme">
+        <h3>Rhythm</h3>
+        <span class="keep">Cycle. Cadence. Foundational.</span>
+        <span class="avoid">streaks, grind, daily challenge.</span>
+      </div>
+      <div class="theme">
+        <h3>Body</h3>
+        <span class="keep">Vessel. Metabolic. Vitality.</span>
+        <span class="avoid">wellness journey, gains, stack.</span>
+      </div>
+      <div class="theme">
+        <h3>Outcome</h3>
+        <span class="keep">Sustained vitality. Control.</span>
+        <span class="avoid">best self, dream body, peak.</span>
+      </div>
+      <div class="theme">
+        <h3>Method</h3>
+        <span class="keep">Conscious. Intentional. Structured.</span>
+        <span class="avoid">effortless, automatic, smart.</span>
+      </div>
+      <div class="theme">
+        <h3>Tone</h3>
+        <span class="keep">Serious, not solemn. Quiet, not silent.</span>
+        <span class="avoid">imperative shouting, medical claims.</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="etymology">
+    <p class="kanji">節制 &middot; 摂生</p>
+    <p>
+      In Japanese, <strong style="color:var(--canvas)">節制 (sessei)</strong> means moderation, temperance, abstinence. <strong style="color:var(--canvas)">摂生 (sessei)</strong> means care of one's health. Both readings reinforce the same idea: deliberate self&#8209;governance &mdash; the brand work done before any copy is read.
+    </p>
+  </section>
+
+  <section class="closing">
+    <p class="quote">&ldquo;Each cycle is the armor.&rdquo;</p>
+    <p class="by">Sessei &mdash; Water &middot; Fasting &middot; Supplements</p>
+  </section>
+</main>
+
+<footer>
+  <div class="links">
+    <a href="index.html">Home</a>
+    <a href="privacy.html">Privacy</a>
+    <a href="support.html">Support</a>
+    <a href="mailto:feedback@sessei.app">feedback@sessei.app</a>
+  </div>
+  <div>&copy; 2026 Sessei. Locally tracked on iPhone.</div>
+</footer>
+
+</body>
+</html>
