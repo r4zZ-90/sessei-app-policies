@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sessei — Privacy Policy</title>
+<style>
+  :root {
+    --bg: #F6F4EE;
+    --surface: #FFFFFF;
+    --text: #16181C;
+    --text-secondary: #4E5560;
+    --accent: #5F8474;
+    --border: #E8E4DA;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #121317;
+      --surface: #1E2024;
+      --text: #F1F3F5;
+      --text-secondary: #B0B5BD;
+      --accent: #9EBAA3;
+      --border: #2A2E36;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    margin: 0;
+    padding: 32px 20px 64px;
+    line-height: 1.5;
+  }
+  main {
+    max-width: 720px;
+    margin: 0 auto;
+    background: var(--surface);
+    padding: 32px 32px 40px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+  }
+  h1 { font-size: 28px; margin: 0 0 6px; }
+  h2 { font-size: 18px; margin: 28px 0 8px; color: var(--accent); }
+  p, li { color: var(--text-secondary); }
+  ul { padding-left: 22px; }
+  a { color: var(--accent); }
+  .meta { font-size: 13px; color: var(--text-secondary); margin-bottom: 24px; }
+  code { background: var(--border); padding: 1px 6px; border-radius: 4px; font-size: 13px; }
+  hr { border: 0; border-top: 1px solid var(--border); margin: 24px 0; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Privacy Policy</h1>
+  <p class="meta">Sessei · Last updated: 16 June 2026</p>
+
+  <p>Sessei is built to be private by design. The principle is simple: <strong>your data stays on your device.</strong> This page describes exactly what that means in practice.</p>
+
+  <h2>1. What Sessei collects</h2>
+  <p>Sessei collects only the data you enter yourself: water and drink logs, intermittent-fasting sessions, supplements you add, your daily goals, your reminder preferences, and the optional personal-profile fields used to calculate your hydration goal (weight, age, activity level, climate, pregnancy status). All of this is stored on your iPhone in a local database, inside an App Group container shared with the Sessei widget extension.</p>
+
+  <h2>2. What Sessei does NOT collect</h2>
+  <ul>
+    <li>No account is required. There is no sign-up, no email, no password.</li>
+    <li>No analytics framework or telemetry SDK is bundled or called at runtime.</li>
+    <li>No third-party tracking technologies. No advertising identifiers.</li>
+    <li>No location data.</li>
+    <li>No data is uploaded to any Sessei-operated server. There are no Sessei-operated servers.</li>
+  </ul>
+
+  <h2>3. Apple Health (optional)</h2>
+  <p>If you grant the permission in Onboarding or in Profile → Personal → Apple Health, Sessei will:</p>
+  <ul>
+    <li>Read existing dietary-water entries so reinstalling the app doesn't lose your data.</li>
+    <li>Write the drinks you log back to Apple Health, so the values stay in sync with other apps.</li>
+  </ul>
+  <p>You can revoke either permission at any time from iOS Settings → Health → Data Access &amp; Devices → Sessei, or from Profile → Personal → Apple Health inside the app.</p>
+
+  <h2>4. Notifications</h2>
+  <p>Sessei schedules local notifications only — there is no push server. Notification permission is requested in Onboarding and can be changed at any time in iOS Settings → Notifications → Sessei.</p>
+
+  <h2>5. In-app purchase</h2>
+  <p>Sessei sells a single non-consumable In-App Purchase ("Premium · Lifetime"). The purchase is processed entirely by Apple's StoreKit framework. Sessei does not see your Apple ID, your payment details, or any other purchase metadata beyond what Apple returns to confirm the purchase. Restore Purchases is available from the in-app paywall.</p>
+
+  <h2>6. Feedback</h2>
+  <p>Shaking your iPhone anywhere in the app raises a "Contact dev" sheet that pre-composes a mail to feedback@sessei.app. The sending is handled by your Mail app — Sessei itself never touches the network. If you choose to write to us, the content of that mail is in your hands.</p>
+
+  <h2>7. Export &amp; deletion</h2>
+  <p>Profile → Data lets you export your entire database as a single JSON file at any time, or import a previously exported file. Deleting the Sessei app from your iPhone deletes all stored data with it.</p>
+
+  <h2>8. Children's privacy</h2>
+  <p>Sessei is not directed at children under 13. The app does not knowingly collect personal information from children. The hydration recommendations and fasting features are intended for adults.</p>
+
+  <h2>9. Changes to this policy</h2>
+  <p>This document is versioned in a public repository. The "Last updated" date above changes when the policy itself changes. We do not maintain a list of email addresses to notify on update; please check this page if you want the current text.</p>
+
+  <h2>10. Contact</h2>
+  <p>For any privacy-related question: <a href="mailto:feedback@sessei.app">feedback@sessei.app</a>.</p>
+
+  <hr>
+  <p class="meta">© Sessei. Local-first by design.</p>
+</main>
+</body>
+</html>

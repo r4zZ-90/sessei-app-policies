@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sessei — Support</title>
+<style>
+  :root {
+    --bg: #F6F4EE; --surface: #FFFFFF; --text: #16181C;
+    --text-secondary: #4E5560; --accent: #5F8474; --border: #E8E4DA;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #121317; --surface: #1E2024; --text: #F1F3F5;
+      --text-secondary: #B0B5BD; --accent: #9EBAA3; --border: #2A2E36;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Helvetica, Arial, sans-serif;
+    background: var(--bg); color: var(--text);
+    margin: 0; padding: 32px 20px 64px; line-height: 1.5;
+  }
+  main {
+    max-width: 720px; margin: 0 auto;
+    background: var(--surface); padding: 32px 32px 40px;
+    border: 1px solid var(--border); border-radius: 12px;
+  }
+  h1 { font-size: 28px; margin: 0 0 6px; }
+  h2 { font-size: 18px; margin: 28px 0 8px; color: var(--accent); }
+  p { color: var(--text-secondary); }
+  a { color: var(--accent); }
+  .meta { font-size: 13px; color: var(--text-secondary); margin-bottom: 24px; }
+  .cta {
+    display: inline-block; margin-top: 8px; padding: 10px 18px;
+    background: var(--accent); color: white; border-radius: 8px;
+    text-decoration: none; font-weight: 600;
+  }
+  details { border-top: 1px solid var(--border); padding: 12px 0; }
+  details > summary { cursor: pointer; font-weight: 600; color: var(--text); }
+  details > p { margin: 8px 0 0; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Support</h1>
+  <p class="meta">Sessei — water, fasting and supplements, locally tracked.</p>
+
+  <h2>Contact</h2>
+  <p>The fastest way to reach the developer is email. Shake your iPhone anywhere in the app to open a pre-composed mail, or write to us directly:</p>
+  <a class="cta" href="mailto:feedback@sessei.app">feedback@sessei.app</a>
+
+  <h2>Frequently asked</h2>
+
+  <details open>
+    <summary>Where is my data stored?</summary>
+    <p>Entirely on your iPhone, in a local database. There is no Sessei account, no cloud sync, no Sessei-operated server. If you reinstall the app, your data is gone — unless you exported it first (Profile → Data → Export).</p>
+  </details>
+
+  <details>
+    <summary>How do I move my data to a new iPhone?</summary>
+    <p>If you restore the new device from an encrypted iPhone backup, Sessei's local database is included. Otherwise, before switching, open Sessei → Profile → Data → Export to save a JSON file. On the new device, install Sessei, then Profile → Data → Import.</p>
+  </details>
+
+  <details>
+    <summary>What does Premium unlock?</summary>
+    <p>The Supplements module. Water and fasting tracking are free forever. Premium is a single one-time purchase — no subscription. The first 7 days after install unlock everything as a trial.</p>
+  </details>
+
+  <details>
+    <summary>I bought Premium but the new install doesn't recognise it.</summary>
+    <p>Tap Profile → Premium → Restore Purchases. Make sure you're signed into the same Apple ID that made the original purchase.</p>
+  </details>
+
+  <details>
+    <summary>How do I delete all my data?</summary>
+    <p>Delete the Sessei app from your iPhone. All locally stored data goes with it. If Apple Health integration was enabled, the entries Sessei wrote to Health remain in Apple Health — manage those from iOS Settings → Health → Data Access &amp; Devices → Sessei.</p>
+  </details>
+
+  <details>
+    <summary>The widget buttons don't log my drink.</summary>
+    <p>Check that the app has been opened at least once after install (so the App Group container is initialised). If the issue persists, please email feedback@sessei.app with your iOS version and a brief description.</p>
+  </details>
+
+  <details>
+    <summary>Why does coffee count as less than water?</summary>
+    <p>Each drink type carries a hydration coefficient based on published research (coffee 0.80, tea 0.90, beer 0.50, wine 0.30, coconut water 1.00, etc.). The coefficient is multiplied with the volume to give the "effective mL" that contributes to your daily goal.</p>
+  </details>
+
+  <details>
+    <summary>What does the flame on the fasting ring mean?</summary>
+    <p>It marks your personalised estimate for when autophagy is generally observed — typically around 16 hours into a fast, adjusted by your age and activity level. Tap the flame for the full explanation and source. This is a wellness estimate, not medical advice.</p>
+  </details>
+</main>
+</body>
+</html>
