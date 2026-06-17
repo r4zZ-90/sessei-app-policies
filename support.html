@@ -5,43 +5,126 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Sessei — Support</title>
 <style>
-  :root {
-    --bg: #F6F4EE; --surface: #FFFFFF; --text: #16181C;
-    --text-secondary: #4E5560; --accent: #5F8474; --border: #E8E4DA;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --bg: #121317; --surface: #1E2024; --text: #F1F3F5;
-      --text-secondary: #B0B5BD; --accent: #9EBAA3; --border: #2A2E36;
-    }
-  }
-  * { box-sizing: border-box; }
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Helvetica, Arial, sans-serif;
-    background: var(--bg); color: var(--text);
-    margin: 0; padding: 32px 20px 64px; line-height: 1.5;
-  }
-  main {
-    max-width: 720px; margin: 0 auto;
-    background: var(--surface); padding: 32px 32px 40px;
-    border: 1px solid var(--border); border-radius: 12px;
-  }
-  h1 { font-size: 28px; margin: 0 0 6px; }
-  h2 { font-size: 18px; margin: 28px 0 8px; color: var(--accent); }
-  p { color: var(--text-secondary); }
-  a { color: var(--accent); }
-  .meta { font-size: 13px; color: var(--text-secondary); margin-bottom: 24px; }
-  .cta {
-    display: inline-block; margin-top: 8px; padding: 10px 18px;
-    background: var(--accent); color: white; border-radius: 8px;
-    text-decoration: none; font-weight: 600;
-  }
-  details { border-top: 1px solid var(--border); padding: 12px 0; }
-  details > summary { cursor: pointer; font-weight: 600; color: var(--text); }
-  details > p { margin: 8px 0 0; }
+:root {
+  --canvas:  #F6F4EE;
+  --ink900:  #0A101A;
+  --ink800:  #131A26;
+  --ink700:  #1F2735;
+  --ink600:  #2F3845;
+  --ink400:  #6E7B8C;
+  --ink300:  #A8B3C0;
+  --ink200:  #CFD7DF;
+  --sage100: #DCE9DD;
+  --sage300: #9EBAA3;
+  --sage400: #7DA28F;
+  --sage500: #5F8474;
+  --sage600: #4A6E5F;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", "Helvetica Neue", sans-serif;
+  background: var(--ink900);
+  color: var(--canvas);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(circle at 80% 0%,  rgba(95, 132, 116, 0.18), transparent 45%),
+    radial-gradient(circle at 20% 90%, rgba(78, 108, 144, 0.12), transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+.topnav {
+  position: relative;
+  z-index: 1;
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 28px 28px 0;
+  font-size: 14px;
+}
+.topnav a {
+  color: var(--sage300);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.15s ease;
+}
+.topnav a:hover { color: var(--sage100); }
+main {
+  position: relative;
+  z-index: 1;
+  max-width: 760px;
+  margin: 32px auto 64px;
+  background: rgba(31, 39, 53, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  padding: 40px 36px 48px;
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 20px;
+  box-shadow: 0 24px 64px rgba(0,0,0,0.4);
+}
+h1 {
+  font-size: clamp(28px, 4vw, 36px);
+  margin: 0 0 6px;
+  color: var(--canvas);
+  letter-spacing: -0.02em;
+  font-weight: 600;
+}
+h2 {
+  font-size: 18px;
+  margin: 32px 0 10px;
+  color: var(--sage300);
+  font-weight: 600;
+}
+p { color: var(--ink200); font-size: 15px; }
+a { color: var(--sage300); transition: color 0.15s ease; }
+a:hover { color: var(--sage100); }
+strong { color: var(--canvas); }
+.meta { font-size: 13px; color: var(--ink400); margin-bottom: 24px; }
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+  padding: 12px 22px;
+  background: var(--sage500);
+  color: white;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 15px;
+  transition: background 0.15s ease, transform 0.15s ease;
+}
+.cta:hover { background: var(--sage600); transform: translateY(-1px); color: white; }
+details {
+  border-top: 1px solid rgba(255,255,255,0.08);
+  padding: 14px 0;
+}
+details > summary {
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--canvas);
+  font-size: 15px;
+}
+details > p { margin: 10px 0 0; color: var(--ink200); }
+footer {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  font-size: 12px;
+  color: var(--ink400);
+  padding: 0 28px 32px;
+}
+footer a { color: var(--sage300); text-decoration: none; margin: 0 8px; }
 </style>
 </head>
 <body>
+<nav class="topnav"><a href="index.html">&larr; Sessei</a></nav>
 <main>
   <h1>Support</h1>
   <p class="meta">Sessei — water, fasting and supplements, locally tracked.</p>
@@ -92,5 +175,10 @@
     <p>It marks your personalised estimate for when autophagy is generally observed — typically around 16 hours into a fast, adjusted by your age and activity level. Tap the flame for the full explanation and source. This is a wellness estimate, not medical advice.</p>
   </details>
 </main>
+<footer>
+  <a href="index.html">Home</a> &middot;
+  <a href="privacy.html">Privacy</a> &middot;
+  <a href="mailto:feedback@sessei.app">feedback@sessei.app</a>
+</footer>
 </body>
 </html>

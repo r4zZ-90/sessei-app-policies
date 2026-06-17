@@ -3,19 +3,367 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Sessei</title>
+<meta name="description" content="Sessei — Water · Fasting · Supplements. A quiet daily-discipline app for iPhone. Everything stays on your device.">
+<title>Sessei — Water · Fasting · Supplements</title>
 <style>
-  body { font-family: -apple-system, sans-serif; background: #F6F4EE; color: #16181C;
-         margin: 0; padding: 64px 20px; text-align: center; }
-  h1 { font-size: 32px; margin: 0 0 6px; color: #4A6E5F; }
-  p { color: #4E5560; max-width: 480px; margin: 0 auto 24px; }
-  a { color: #5F8474; text-decoration: none; display: inline-block; margin: 8px 12px; font-weight: 600; }
+:root {
+  --canvas:   #F6F4EE;
+  --ink900:   #0A101A;
+  --ink800:   #131A26;
+  --ink700:   #1F2735;
+  --ink600:   #2F3845;
+  --ink500:   #4B5664;
+  --ink400:   #6E7B8C;
+  --ink300:   #A8B3C0;
+  --ink200:   #CFD7DF;
+  --sage100:  #DCE9DD;
+  --sage300:  #9EBAA3;
+  --sage400:  #7DA28F;
+  --sage500:  #5F8474;
+  --sage600:  #4A6E5F;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", "Helvetica Neue", sans-serif;
+  background: var(--ink900);
+  color: var(--canvas);
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Ambient gradient layer */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(circle at 20% 0%,   rgba(95, 132, 116, 0.22), transparent 40%),
+    radial-gradient(circle at 85% 30%,  rgba(78, 108, 144, 0.16), transparent 45%),
+    radial-gradient(circle at 50% 100%, rgba(95, 132, 116, 0.12), transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Floating water-drop background animation */
+.bg-drops {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+.drop {
+  position: absolute;
+  border-radius: 50% 50% 50% 0;
+  background: radial-gradient(circle at 35% 30%, var(--sage300), var(--sage500));
+  opacity: 0;
+  transform: rotate(-45deg);
+  animation: float 30s linear infinite;
+  filter: blur(0.5px);
+}
+@keyframes float {
+  0%   { transform: translate(0, 110vh) rotate(-45deg) scale(0.7); opacity: 0; }
+  10%  { opacity: 0.10; }
+  85%  { opacity: 0.10; }
+  100% { transform: translate(60px, -15vh) rotate(-45deg) scale(1.05); opacity: 0; }
+}
+.drop:nth-child(1) { left:  6%; width:  80px; height: 100px; animation-duration: 34s; animation-delay:  0s; }
+.drop:nth-child(2) { left: 22%; width:  46px; height:  58px; animation-duration: 28s; animation-delay:  6s; }
+.drop:nth-child(3) { left: 40%; width: 120px; height: 150px; animation-duration: 44s; animation-delay: 10s; }
+.drop:nth-child(4) { left: 58%; width:  64px; height:  82px; animation-duration: 30s; animation-delay: 14s; }
+.drop:nth-child(5) { left: 78%; width: 100px; height: 128px; animation-duration: 38s; animation-delay:  3s; }
+.drop:nth-child(6) { left: 50%; width:  52px; height:  66px; animation-duration: 26s; animation-delay: 20s; }
+.drop:nth-child(7) { left: 14%; width:  68px; height:  88px; animation-duration: 36s; animation-delay: 16s; }
+.drop:nth-child(8) { left: 90%; width:  56px; height:  72px; animation-duration: 32s; animation-delay:  8s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .drop { animation: none; opacity: 0; }
+}
+
+main {
+  position: relative;
+  z-index: 1;
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 56px 28px 96px;
+}
+
+/* Hero */
+.hero {
+  text-align: center;
+  padding: 64px 0 88px;
+}
+.hero .logo-wrap {
+  display: inline-block;
+  padding: 14px;
+  border-radius: 32px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.01));
+  box-shadow: 0 24px 60px rgba(0,0,0,0.5);
+  margin-bottom: 28px;
+}
+.hero .logo {
+  width: 96px;
+  height: 96px;
+  display: block;
+  border-radius: 22px;
+}
+.hero h1 {
+  font-size: clamp(44px, 8vw, 80px);
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  margin: 0 0 16px;
+  color: var(--canvas);
+  background: linear-gradient(180deg, var(--canvas), var(--ink200));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.hero .tagline {
+  font-size: clamp(15px, 1.8vw, 18px);
+  color: var(--sage300);
+  margin: 0 0 24px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+.hero .meta {
+  font-size: 15px;
+  color: var(--ink300);
+  max-width: 520px;
+  margin: 0 auto 36px;
+}
+.cta-row {
+  display: inline-flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 22px;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 15px;
+  transition: background 0.15s ease, transform 0.15s ease, border-color 0.15s ease;
+}
+.cta.primary { background: var(--sage500); color: white; }
+.cta.primary:hover { background: var(--sage600); transform: translateY(-1px); }
+.cta.ghost {
+  background: transparent;
+  border: 1px solid var(--ink600);
+  color: var(--ink200);
+}
+.cta.ghost:hover {
+  border-color: var(--sage400);
+  color: var(--canvas);
+}
+
+/* 3 Pillars */
+.pitch {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+  padding: 40px 0 80px;
+}
+.pillar {
+  background: rgba(255,255,255,0.025);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 18px;
+  padding: 28px 26px;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+.pillar:hover {
+  border-color: rgba(126, 162, 143, 0.3);
+  background: rgba(255,255,255,0.035);
+}
+.pillar .icon {
+  width: 44px; height: 44px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--sage500), var(--sage600));
+  display: grid;
+  place-items: center;
+  margin-bottom: 18px;
+}
+.pillar .icon svg {
+  width: 22px; height: 22px;
+  stroke: white; stroke-width: 2; fill: none;
+  stroke-linecap: round; stroke-linejoin: round;
+}
+.pillar h3 {
+  font-size: 18px;
+  margin: 0 0 8px;
+  color: var(--canvas);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+.pillar p {
+  font-size: 14px;
+  color: var(--ink300);
+  margin: 0;
+  line-height: 1.55;
+}
+
+/* Screenshots */
+.shots { padding: 32px 0 80px; }
+.shots h2 {
+  text-align: center;
+  font-size: clamp(22px, 3vw, 28px);
+  color: var(--canvas);
+  margin: 0 0 36px;
+  letter-spacing: -0.01em;
+  font-weight: 600;
+}
+.shots-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+  max-width: 920px;
+  margin: 0 auto;
+}
+.shot {
+  border-radius: 22px;
+  overflow: hidden;
+  box-shadow: 0 24px 64px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.04);
+  transition: transform 0.3s ease;
+}
+.shot:hover { transform: translateY(-6px); }
+.shot img { width: 100%; display: block; }
+
+/* Philosophy */
+.philosophy {
+  padding: 64px 0 32px;
+  max-width: 760px;
+  margin: 0 auto;
+  text-align: center;
+}
+.philosophy::before {
+  content: "";
+  display: block;
+  width: 36px;
+  height: 2px;
+  background: var(--sage400);
+  margin: 0 auto 28px;
+  opacity: 0.6;
+}
+.philosophy .quote {
+  font-size: clamp(18px, 2.2vw, 22px);
+  line-height: 1.55;
+  color: var(--canvas);
+  font-style: italic;
+  font-weight: 400;
+  margin: 0 0 16px;
+}
+.philosophy .by {
+  color: var(--ink400);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+/* Footer */
+footer {
+  position: relative;
+  z-index: 1;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  padding: 36px 28px 48px;
+  text-align: center;
+  font-size: 13px;
+  color: var(--ink400);
+  background: rgba(0,0,0,0.2);
+}
+footer .links { margin-bottom: 12px; }
+footer a {
+  color: var(--sage300);
+  text-decoration: none;
+  margin: 0 12px;
+  transition: color 0.15s ease;
+}
+footer a:hover { color: var(--sage100); }
+
+@media (max-width: 720px) {
+  .shots-grid { grid-template-columns: 1fr; max-width: 320px; }
+  main { padding: 32px 20px 64px; }
+  .hero { padding: 32px 0 56px; }
+  .hero .logo { width: 80px; height: 80px; }
+  .pillar { padding: 24px 22px; }
+}
 </style>
 </head>
 <body>
-  <h1>Sessei</h1>
-  <p>Water · Fasting · Supplements — locally tracked on iPhone.</p>
-  <a href="privacy.html">Privacy Policy</a>
-  <a href="support.html">Support</a>
+
+<div class="bg-drops">
+  <div class="drop"></div><div class="drop"></div><div class="drop"></div><div class="drop"></div>
+  <div class="drop"></div><div class="drop"></div><div class="drop"></div><div class="drop"></div>
+</div>
+
+<main>
+  <section class="hero">
+    <div class="logo-wrap">
+      <img class="logo" src="icon.png" alt="Sessei">
+    </div>
+    <h1>Sessei</h1>
+    <p class="tagline">Water · Fasting · Supplements</p>
+    <p class="meta">A quiet daily-discipline app for iPhone. Track water, intermittent fasting, and supplement routines &mdash; everything stays on your device.</p>
+    <div class="cta-row">
+      <a class="cta primary" href="#shots">See it in action</a>
+      <a class="cta ghost" href="privacy.html">Privacy</a>
+      <a class="cta ghost" href="support.html">Support</a>
+    </div>
+  </section>
+
+  <section class="pitch">
+    <div class="pillar">
+      <div class="icon">
+        <svg viewBox="0 0 24 24"><path d="M12 3 c4 5 6 9 6 12 a6 6 0 1 1 -12 0 c0 -3 2 -7 6 -12 z"/></svg>
+      </div>
+      <h3>Water</h3>
+      <p>Hydration coefficients built in for eight drink types. Two&#8209;tap logging. A home&#8209;screen widget for the day's intake at a glance.</p>
+    </div>
+    <div class="pillar">
+      <div class="icon">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="13" r="8"/><path d="M12 5 V2 M9 2 h6 M19 6 l2 -2"/></svg>
+      </div>
+      <h3>Fasting</h3>
+      <p>Ten documented phases &mdash; fed, glycogen burn, autophagy, deep ketosis. Personalised window, calm ring, no streak shaming.</p>
+    </div>
+    <div class="pillar">
+      <div class="icon">
+        <svg viewBox="0 0 24 24"><path d="M3 12 a9 9 0 1 1 18 0 a9 9 0 1 1 -18 0 z M3 12 h18"/></svg>
+      </div>
+      <h3>Supplements</h3>
+      <p>Curated catalog. Label scan. Daily&#8209;stack adherence at a glance, with reminders that skip themselves when you're done.</p>
+    </div>
+  </section>
+
+  <section id="shots" class="shots">
+    <h2>Tracked, not gamified.</h2>
+    <div class="shots-grid">
+      <div class="shot"><img src="shot-water.png" alt="Sessei — water tracking"></div>
+      <div class="shot"><img src="shot-fasting.png" alt="Sessei — fasting ring"></div>
+      <div class="shot"><img src="shot-supplements.png" alt="Sessei — supplements"></div>
+    </div>
+  </section>
+
+  <section class="philosophy">
+    <p class="quote">&ldquo;True optimization does not come from erratic bio&#8209;hacking, but from the rhythmic, conscious execution of foundational habits.&rdquo;</p>
+    <p class="by">Sessei &mdash; quiet armor through consistency</p>
+  </section>
+</main>
+
+<footer>
+  <div class="links">
+    <a href="privacy.html">Privacy Policy</a>
+    <a href="support.html">Support</a>
+    <a href="mailto:feedback@sessei.app">feedback@sessei.app</a>
+  </div>
+  <div>&copy; 2026 Sessei. Locally tracked on iPhone.</div>
+</footer>
+
 </body>
 </html>
